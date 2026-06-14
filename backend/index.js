@@ -1,8 +1,15 @@
 import express from "express"
-import { NODE_ENV, PORT } from "./config/env.js";
+import { clerkMiddleware } from '@clerk/express'
+import cors from "cors";
+import { NODE_ENV, PORT, SITE_URL } from "./config/env.js";
 import { connectToDatabase } from "./lib/db.js";
 
 const app = express();
+
+// Middlewares
+app.use(express.json());
+app.use(cors({ origin: SITE_URL, credentials: true }));
+app.use(clerkMiddleware());
 
 app.get("/health", (req, res) => {
     res.status(200).json({ success: true });

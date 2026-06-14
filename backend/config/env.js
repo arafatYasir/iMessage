@@ -8,5 +8,6 @@ export const {
     DB_URI,
     CLERK_PUBLISHABLE_KEY,
     CLERK_SECRET_KEY,
-    IMAGEKIT_PRIVATE_KEY
+    IMAGEKIT_PRIVATE_KEY,
+    SITE_URL
 } = process.env;
