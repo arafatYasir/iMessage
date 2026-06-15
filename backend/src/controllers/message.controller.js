@@ -44,7 +44,7 @@ export async function getChatsForSidebar(req, res) {
             { $project: { clerkId: 0 } }
         ]);
 
-        res.status(200).json(chats)
+        res.status(200).json(chats);
     } catch (e) {
         console.error("Error in getChatsForSidebar: ", e.message);
         res.status(500).json({ message: "Internal server error" });

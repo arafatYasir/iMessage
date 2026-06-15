@@ -11,6 +11,6 @@ messageRouter.use(protectRoute);
 messageRouter.get("/users", getUsersForSidebar);
 messageRouter.get("/chats", getChatsForSidebar);
 messageRouter.get("/:id", getMessages);
-messageRouter.post("/send/:id", upload.single("media"), sendMessage)
+messageRouter.post("/send/:id", upload.single("media"), sendMessage);
 
 export default messageRouter;

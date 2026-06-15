@@ -9,8 +9,7 @@ import job from "./lib/cron.js";
 import clerkWebhook from "./webhooks/clerk.webhook.js"
 import authRouter from "./routes/auth.route.js";
 import messageRouter from "./routes/message.route.js";
-
-const app = express();
+import { app, httpServer } from "./lib/socket.js";
 
 const publicDir = path.join(process.cwd(), "public");
 
@@ -40,7 +39,7 @@ if (fs.existsSync(publicDir)) {
     });
 }
 
-app.listen(PORT, async () => {
+httpServer.listen(PORT, async () => {
     console.log(`Server is running on port: ${PORT} in ${NODE_ENV} mode`);
 
     // Connect to Database
