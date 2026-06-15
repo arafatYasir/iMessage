@@ -6,10 +6,13 @@ import { connectToDatabase } from "./lib/db.js";
 import fs from "fs";
 import path from "path";
 import job from "./lib/cron.js";
+import clerkWebhook from "./webhooks/clerk.webhook.js"
 
 const app = express();
 
 const publicDir = path.join(process.cwd(), "public");
+
+app.use("/api/webhook/clerk", express.raw({ type: "application/json" }), clerkWebhook);
 
 // Middlewares
 app.use(express.json());
