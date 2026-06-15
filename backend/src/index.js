@@ -8,6 +8,7 @@ import path from "path";
 import job from "./lib/cron.js";
 import clerkWebhook from "./webhooks/clerk.webhook.js"
 import authRouter from "./routes/auth.route.js";
+import messageRouter from "./routes/message.route.js";
 
 const app = express();
 
@@ -21,11 +22,13 @@ app.use(express.json());
 app.use(cors({ origin: SITE_URL, credentials: true }));
 app.use(clerkMiddleware());
 
+// Routes
 app.get("/health", (req, res) => {
     res.status(200).json({ success: true });
 });
 
 app.use("/api/auth", authRouter);
+app.use("/api/messages", messageRouter);
 
 // if the public directory exists, serve the static files
 // this is for the production build
