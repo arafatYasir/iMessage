@@ -5,6 +5,7 @@ import { NODE_ENV, PORT, SITE_URL } from "./config/env.js";
 import { connectToDatabase } from "./lib/db.js";
 import fs from "fs";
 import path from "path";
+import job from "./lib/cron.js";
 
 const app = express();
 
@@ -34,4 +35,9 @@ app.listen(PORT, async () => {
 
     // Connect to Database
     await connectToDatabase();
+
+    // Start cron job in production only
+    if (NODE_ENV === "production") {
+        job.start();
+    }
 });
