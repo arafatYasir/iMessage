@@ -68,7 +68,7 @@ export const useChatStore = create((set, get) => ({
     },
 
     sendMessage: async (messageData) => {
-        const { selectedUser } = get();
+        const { selectedUser, messages } = get();
 
         if (!selectedUser) return false;
 
@@ -139,18 +139,17 @@ export const useChatStore = create((set, get) => ({
         set({ isSoundEnabled: isEnabled });
     },
 
-    sendTextMessage: async () => {
-        const { activeChatId, composerText } = get();
+    sendTextMessage: async (chatId) => {
+        const { composerText } = get();
         const messageText = composerText.trim();
 
-        if (!activeChatId || !messageText) return false;
+        if (!chatId || !messageText) return false;
 
         return await get().sendMessage({ text: messageText });
     },
 
-    sendMediaMessage: async (file) => {
-        const { activeChatId } = get();
-        if (!activeChatId || !file) return false;
+    sendMediaMessage: async ({ chatId, file }) => {
+        if (!chatId || !file) return false;
 
         const formData = new FormData();
         formData.append("media", file);
