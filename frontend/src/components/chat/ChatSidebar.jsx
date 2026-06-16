@@ -129,10 +129,10 @@ function ChatSidebar() {
                     ) : (
                         filteredUsers.map((user) => (
                             <ConversationRow
-                                key={user.chatId}
+                                key={user.id}
                                 user={user}
-                                selected={user.chatId === activeChatId}
-                                onSelect={() => setActiveChatId(user.chatId)}
+                                selected={user.id === activeChatId}
+                                onSelect={() => setActiveChatId(user.id)}
                             />
                         ))
                     )}
